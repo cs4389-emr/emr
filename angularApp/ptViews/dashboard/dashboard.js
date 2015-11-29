@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.dashboard', ['ngRoute'])
+angular.module('myApp.ptDashboard', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/dashboard', {
-    templateUrl: 'dashboard/dashboard.html',
-    controller: 'DashboardCtrl'
+  $routeProvider.when('/pt/dashboard', {
+    templateUrl: 'ptViews/dashboard/dashboard.html',
+    controller: 'ptDashboardCtrl'
   });
 }])
 
-.controller('DashboardCtrl', ['$scope', function(sc) {
+.controller('ptDashboardCtrl', ['$scope', function(sc) {
 	sc.patient = {
 		'firstName' : 'Test',
 		'lastName' : 'Patient',

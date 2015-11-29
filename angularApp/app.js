@@ -4,16 +4,14 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.signIn',
-  'myApp.dashboard',
+  'myApp.ptDashboard',
   'myApp.ptViewRecords',
   'myApp.ptChartDetail',
+  'myApp.ptDemographics',
+  'myApp.ptAuth',
   'myApp.version',
   'filters'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-  when("/dashboard", {templateUrl: "ptViews/dashboard/dashboard.html", controller: "DashboardCtrl"}).
-  when("/pt/visit", {templateUrl: "ptViews/viewChart/viewChart.html", controller: "PtViewRecordsCtrl"}).
-  when('/pt/visit/:id', {templateUrl: 'ptViews/viewChart/chartDetail.html', controller: 'PtChartDetailCtrl'}).
-  otherwise({redirectTo: '/signIn'});
+  $routeProvider.otherwise({redirectTo: '/signIn'});
 }]);

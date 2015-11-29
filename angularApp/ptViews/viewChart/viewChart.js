@@ -5,7 +5,7 @@ angular.module('myApp.ptViewRecords', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/pt/visit', {
     templateUrl: 'ptViews/viewChart/viewChart.html',
-    controller: 'ptViewRecordsCtrl'
+    controller: 'PtViewRecordsCtrl'
   });
 }])
 
