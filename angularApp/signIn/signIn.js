@@ -11,7 +11,7 @@ angular.module('myApp.signIn', ['ngRoute'])
 
 .controller('SignInCtrl', ['$scope', function(sc) {
 	//default username/pswd
-	sc.email = "test@gmail.com";
+	sc.email = "testDoc@gmail.com";
 	sc.password = "password";
 
 	sc.signIn = function() {
