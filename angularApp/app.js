@@ -10,6 +10,7 @@ angular.module('myApp', [
   'myApp.provVisitList',
   'myApp.provVisitDetail',
   'myApp.provCreateVisit',
+  'myApp.provRefer',
   'myApp.ptViewRecords',
   'myApp.ptChartDetail',
   'myApp.ptDemographics',
