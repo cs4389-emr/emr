@@ -28,9 +28,17 @@ angular.module('myApp.provCreateVisit', ['ngRoute'])
 		 'id' : '2'}
 	]
 
-	sc.visit={'examDate' : '',
+	sc.visit={'examDate' : new Date(),
 	 'reason' : '',
 	 'provider' : 'Dr. Testington',
-	 'id' : ''};
+	 'height' : '',
+	 'weight' : '',
+	 'systolic' : '',
+	 'diastolic' : '',
+	 'symptoms' : '',
+	 'notes' : '',
+	 'perscription': '',
+	 'id' : ''
+	};
 
 }]);
