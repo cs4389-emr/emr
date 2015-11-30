@@ -17,7 +17,14 @@
 <div class="container" role="main">
 
 <!--insert rows for spacing-->
-
+<div ng-hide="invalidLogin">
+	<div class="alert alert-error alert-dismissible col-sm-9" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+		Incorrect Login
+	</div>
+</div>
   <form class="form-signin">
     <div class="form-group">
       <h2>Please sign in</h2>
@@ -25,14 +32,15 @@
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus ng-model="email">
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="password">
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <label>
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" value="physician"> Physician mode
         </label>
-      </div>
+      </div> -->
+
       <div class="col-sm-6 col-sm-offset-3">
-      <!--<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>-->
-      <a href="#/prov/dashboard" class="btn btn-lg btn-primary btn-block">Sign in</a>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
+      <!-- <a href="#/pt/dashboard" class="btn btn-lg btn-primary btn-block">Sign in</a> -->
       </div>
     </div>
   </form>
