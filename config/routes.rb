@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  get 'users/me'
+
+  get 'visits/index'
+
+  get 'visits/create'
+
+  get 'patients/index'
+
+  scope defaults: { format: 'json' } do
+    resources :patients, only: [:index]
+    resources :physicians, only: [:index]
+    resources :visits, only: [:index, :create]
+    get '/user' => 'users#me'
+  end
+
   devise_for :users
   root 'home#index'
 
