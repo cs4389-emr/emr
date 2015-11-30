@@ -9,28 +9,15 @@ angular.module('myApp.provCreateVisit', ['ngRoute'])
   });
 }])
 
-.controller('provCreateVisitCtrl', ['$scope', function(sc) {
-	sc.provider ={
-		'firstName' : 'James',
-		'lastName' : 'Testor'
-	}
+.controller('provCreateVisitCtrl', ['$scope', 'EMRService','$cookieStore', function(sc, EMRService,$cookieStore) {
+	sc.globals = $cookieStore.get('globals');
+	sc.provider = EMRService.GetProvider(sc.globals.username);
 
-	sc.patients=[
-		{'firstName' : 'Test',
-		 'lastName' : 'Testington',
-		 'age' : 24,
-		 'gender' : 'U',
-		 'id' : '1'},
-		{'firstName' : 'John',
-		 'lastName' : 'Smith',
-		 'age' : '60',
-		 'gender' : 'M',
-		 'id' : '2'}
-	]
+	sc.patients= EMRService.GetProviderPatients(sc.globals.username);
 
 	sc.visit={'examDate' : new Date(),
 	 'reason' : '',
-	 'provider' : 'Dr. Testington',
+	 'provider' : sc.globals.username,
 	 'height' : '',
 	 'weight' : '',
 	 'systolic' : '',
@@ -40,5 +27,9 @@ angular.module('myApp.provCreateVisit', ['ngRoute'])
 	 'perscription': '',
 	 'id' : ''
 	};
+
+	sc.saveVisit = function(){
+		EMRService.SaveVisit(sc.visit);
+	}
 
 }]);

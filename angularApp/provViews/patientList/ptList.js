@@ -9,20 +9,11 @@ angular.module('myApp.provPtList', ['ngRoute'])
   });
 }])
 
-.controller('provPtListCtrl', ['$scope', function(sc) {
-	sc.provider ={
-		'firstName' : 'James',
-		'lastName' : 'Testor'
-	}
+.controller('provPtListCtrl', ['$scope', 'EMRService','$cookieStore', function(sc, EMRService, $cookieStore) {
+	sc.globals = $cookieStore.get('globals');
+	sc.provider = EMRService.GetProvider(sc.globals.username);
 	sc.selectedPatient = {};
 
-	sc.patients=[
-		{'firstName' : 'Test',
-		 'lastName' : 'Testington',
-		 'id' : '1'},
-		{'firstName' : 'John',
-		 'lastName' : 'Smith',
-		 'id' : '2'}
-	]
+	sc.patients=EMRService.GetProviderPatients(sc.globals.username);
 
 }]);

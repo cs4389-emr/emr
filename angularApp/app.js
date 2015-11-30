@@ -18,6 +18,7 @@ angular.module('myApp', [
   'myApp.version',
   'filters',
   'AuthenticationService',
+  'EMRService',
   'ngCookies',
   'base64'
 ]).

@@ -9,36 +9,9 @@ angular.module('myApp.ptDashboard', ['ngRoute'])
   });
 }])
 
-.controller('ptDashboardCtrl', ['$scope', function(sc) {
-	sc.patient = {
-		'firstName' : 'Test',
-		'lastName' : 'Patient',
-		'PCP' : 'Dr. Testor',
-		'ethnicity' : 'Caucasian',
-		'age' : 24,
-		'gender' : 'U',
-		'phone' : '555-555-5555',
-		'email': 'test@test.com',
-		'addr1': '1000 Unknown Ln',
-		'addr2': 'Apt 37',
-		'city' : 'Miami',
-		'state': 'FL',
-		'zip' : '33173'
-	};
+.controller('ptDashboardCtrl', ['$scope','EMRService', '$cookieStore', function(sc,EMRService,$cookieStore) {
+	sc.globals = $cookieStore.get('globals');
+	sc.patient = EMRService.GetPatient(sc.globals.username);
 
-	sc.visits = [
-	{'examDate' : '11/16/2015',
-	 'reason' : 'G43.0',
-	 'provider' : 'Dr. Testor',
-	 'id' : '3'},
-	{'examDate' : '06/2/2014',
-	 'reason' : 'J06.9',
-	 'provider' : 'Dr. Testor',
-	 'id' : '1'},
-	{'examDate' : '09/8/2015',
-	 'reason' : 'S92.109',
-	 'provider' : 'Dr. Ortho',
-	 'id' : '2'},
-	];
-
+	sc.visits = EMRService.GetPatientVisitsByID(sc.patient.id);
 }]);

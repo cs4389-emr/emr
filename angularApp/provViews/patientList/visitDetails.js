@@ -9,19 +9,12 @@ angular.module('myApp.provVisitDetail', ['ngRoute'])
   });
 }])
 
-.controller('provVisitDetailCtrl', ['$scope', function(sc) {
-	sc.provider ={
-		'firstName' : 'James',
-		'lastName' : 'Testor'
-	}
+.controller('provVisitDetailCtrl', ['$scope','$cookieStore','$routeParams', function(sc, $cookieStore, $routeParams) {
+	sc.globals = $cookieStore.get('globals');
+	sc.provider = EMRService.GetProvider(sc.globals.username);
 
-	sc.patient= {'firstName' : 'Test',
-		 'lastName' : 'Testington',
-		 'id' : '1'};
+	sc.patient= EMRService.GetPatientByID($routeParams.id);
 
-	sc.visits={'examDate' : '11/16/2015',
-	 'reason' : 'G43.0',
-	 'provider' : 'Dr. Testor',
-	 'id' : '3'};
+	sc.visits=EMRService.GetPatientVisitsByID($routeParams.id);
 
 }]);

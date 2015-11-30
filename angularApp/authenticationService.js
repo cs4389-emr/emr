@@ -10,21 +10,20 @@ angular.module('AuthenticationService',[]).factory('AuthenticationService', ['$h
 
 	function Login(username, password, callback) {
 		console.log('login function');
-		 /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            $timeout(function () {
-                var response;
-                if(username != null && password != null)
-                	{response = {success: true, type: 'patient'}}
-                else{response = {success: false, message: 'Username or password is incorrect'}}
-                callback(response);
-            }, 10);
+		 // /* Dummy authentication for testing, uses $timeout to simulate api call
+   //           ----------------------------------------------*/
+   //          $timeout(function () {
+   //              var response;
+   //              if(username != null && password != null)
+   //              	{response = {success: true, type: 'patient'}}
+   //              else{response = {success: false, message: 'Username or password is incorrect'}}
+   //              callback(response);
+   //          }, 10);
 
-		// $http.post('/api/authenticate', {username: username, password: password
-		// 	.success(function(response) {
-		// 		callback(response);
-		// 	});
-		// })
+		$http.post('/api/authenticate', {username: username, password: password})
+			.success(function(response) {
+				callback(response);
+			});
 	}
 
 	function SetCredentials(username, password) {

@@ -3,31 +3,18 @@
 angular.module('myApp.provVisitList', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/prov/visits/:lastName', {
+  $routeProvider.when('/prov/visits/:id', {
     templateUrl: 'provViews/patientList/visitList.html',
     controller: 'provVisitListCtrl'
   });
 }])
 
-.controller('provVisitListCtrl', ['$scope', function(sc) {
-	sc.provider ={
-		'firstName' : 'James',
-		'lastName' : 'Testor'
-	}
+.controller('provVisitListCtrl', ['$scope','EMRService','$cookieStore','$routeParams', function(sc,EMRService,$cookieStore,$routeParams) {
+	sc.globals = $cookieStore.get('globals');
+	sc.provider = EMRService.GetProvider(sc.globals.username);
 
-	sc.patient= {'firstName' : 'Test',
-		 'lastName' : 'Testington',
-		 'id' : '1'};
+	sc.patient= EMRService.GetPatientByID($routeParams.id);
 
-	sc.visits=[
-	{'examDate' : '11/16/2015',
-	 'reason' : 'G43.0',
-	 'provider' : 'Dr. Testor',
-	 'id' : '3'},
-	{'examDate' : '06/2/2014',
-	 'reason' : 'J06.9',
-	 'provider' : 'Dr. Testor',
-	 'id' : '1'},
-	];
+	sc.visits=EMRService.GetPatientVisitsByID($routeParams.id);
 
 }]);
