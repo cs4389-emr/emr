@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/me'
-
-  get 'visits/index'
-
-  get 'visits/create'
-
-  get 'patients/index'
-
   scope defaults: { format: 'json' } do
     resources :patients, only: [:index]
     resources :physicians, only: [:index]
