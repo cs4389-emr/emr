@@ -9,7 +9,7 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
   });
 }])
 
-.controller('PtDemographicsCtrl', ['$scope','EMRService', '$cookieStore',function(sc,EMRService,$cookieStore){
+.controller('PtDemographicsCtrl', ['$scope', function(sc) {
 	sc.eName = false;
 	sc.eEth = false;
 	sc.eGender = false;
@@ -18,10 +18,36 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	sc.ePhone1 = false;
 	sc.ePhone2 = false;
 
-	sc.globals = $cookieStore.get('globals');
-	sc.patient = EMRService.GetPatient(sc.globals.username);
+	sc.patient = {
+		'firstName' : 'Test',
+		'lastName' : 'Patient',
+		'PCP' : 'Dr. Testor',
+		'ethnicity' : 'Caucasian',
+		'age' : 24,
+		'gender' : 'U',
+		'phone' : '555-555-5555',
+		'email': 'test@test.com',
+		'addr1': '1000 Unknown Ln',
+		'addr2': 'Apt 37',
+		'city' : 'Miami',
+		'state': 'FL',
+		'zip' : '33173'
+	};
 
-	sc.visits = EMRService.GetPatientVisitsByID(sc.patient.id);
+	sc.visits = [
+	{'examDate' : '11/16/2015',
+	 'reason' : 'G43.0',
+	 'provider' : 'Dr. Testor',
+	 'id' : '3'},
+	{'examDate' : '06/2/2014',
+	 'reason' : 'J06.9',
+	 'provider' : 'Dr. Testor',
+	 'id' : '1'},
+	{'examDate' : '09/8/2015',
+	 'reason' : 'S92.109',
+	 'provider' : 'Dr. Ortho',
+	 'id' : '2'},
+	];
 
 	sc.editName = function(){
 		console.log("editing name");
@@ -29,7 +55,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.saveName = function(){
 		sc.eName = false;
-		sc.save();
 	};
 
 	sc.editEth = function(){
@@ -37,7 +62,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.saveEth = function(){
 		sc.eEth = false;
-		sc.save();
 	};
 
 	sc.editGender = function(){
@@ -45,7 +69,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.saveGender = function(){
 		sc.eGender = false;
-		sc.save();
 	};
 
 	sc.editAge = function(){
@@ -53,7 +76,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.saveAge = function(){
 		sc.eAge = false;
-		sc.save();
 	};
 
 	sc.editAddr = function(){
@@ -61,7 +83,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.saveAddr = function(){
 		sc.eAddr = false;
-		sc.save();
 	};
 
 	sc.editPhone1 = function(){
@@ -69,7 +90,6 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.savePhone1 = function(){
 		sc.ePhone1 = false;
-		sc.save();
 	};
 
 	sc.editPhone2 = function(){
@@ -77,11 +97,7 @@ angular.module('myApp.ptDemographics', ['ngRoute'])
 	};
 	sc.savePhone2 = function(){
 		sc.ePhone2 = false;
-		sc.save();
 	};
 
-	sc.save = function(){
-		EMRService.SaveDemographics(sc.patient);
-	}
 
 }]);

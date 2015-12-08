@@ -9,18 +9,32 @@ angular.module('myApp.provRefer', ['ngRoute'])
   });
 }])
 
-.controller('provReferCtrl', ['$scope','EMRService','$cookieStore', function(sc,EMRService,$cookieStore) {
-	sc.globals = $cookieStore.get('globals');
-	sc.provider = EMRService.GetProvider(sc.globals.username);
+.controller('provReferCtrl', ['$scope', function(sc) {
+	sc.provider ={
+		'firstName' : 'James',
+		'lastName' : 'Testor'
+	}
 
 	sc.selectedPhys = {};
 
-	sc.physicians = EMRService.GetPhysicians();
+	sc.physicians = [
+		{'firstName' : 'James',
+		 'lastName' : 'Testor',
+		 'id' : '1'},
+		{'firstName' : 'Alan',
+		 'lastName' : 'Ortho',
+		 'id' : '2'}
+	];
 
-	sc.patients=EMRService.GetProviderPatients(sc.globals.username);
-
-	sc.refer = function(patientID){
-		EMRService.authorize(selectedPhys.id, patientID);
-	}
+	sc.patients=[
+		{'firstName' : 'Test',
+		 'lastName' : 'Testington',
+		 'selectedPhys': {},
+		 'id' : '1'},
+		{'firstName' : 'John',
+		 'lastName' : 'Smith',
+		 'selectedPhys' : {},
+		 'id' : '2'}
+	]
 
 }]);

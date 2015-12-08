@@ -25,7 +25,7 @@
               <th>Provider</th>
             </tr>
             <tr ng-repeat="visit in visits | orderBy:'-examDate'">
-              <td><a href="#/pt/visit/{{patient.id}}/{{visit.examDate}}">{{visit.examDate}}</a></td>
+              <td><a href="#/pt/visit/{{visit.id}}">{{visit.examDate}}</a></td>
               <td>{{visit.reason}}</td>
               <td>{{visit.provider}}</td>
             </tr>
